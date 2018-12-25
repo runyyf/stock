@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hugo.stock.entity.Stock">
+
+    <resultMap id="baseMap" type="com.hugo.stock.entity.Stock">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="gid" column="gid" jdbcType="VARCHAR"/>
+        <result property="increPer" column="incre_per" jdbcType="VARCHAR"/>
+        <result property="increase" column="increase" jdbcType="VARCHAR"/>
+        <result property="todayStartPri" column="today_start_pri" jdbcType="VARCHAR"/>
+        <result property="yesterdayEndPri" column="yesterday_end_pri" jdbcType="VARCHAR"/>
+        <result property="nowPri" column="now_pri" jdbcType="VARCHAR"/>
+        <result property="todayMax" column="today_max" jdbcType="VARCHAR"/>
+        <result property="todayMin" column="today_min" jdbcType="VARCHAR"/>
+        <result property="picMinUrl" column="pic_min_url" jdbcType="VARCHAR"/>
+        <result property="picDayUrl" column="pic_day_url" jdbcType="VARCHAR"/>
+        <result property="picWeekUrl" column="pic_week_url" jdbcType="VARCHAR"/>
+        <result property="picMonthUrl" column="pic_month_url" jdbcType="VARCHAR"/>
+        <result property="dateCreated" column="date_created" jdbcType="DATE"/>
+        <result property="dateLastUpdate" column="date_last_update" jdbcType="DATE"/>
+    </resultMap>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultType="com.hugo.stock.entity.Stock">
+        SELECT * FROM stock
+    </select>
+
+    <!-- 条件查询 -->
+    <select id="findByPage" parameterType="com.hugo.stock.entity.Stock" resultMap="baseMap">
+        SELECT * FROM stock WHERE 1=1
+    </select>
+
+    <!-- 根据id查询 -->
+    <select id="findById" parameterType="Long" resultMap="baseMap">
+        SELECT * FROM stock WHERE id = #{id}
+    </select>
+
+    <!-- 添加数据 -->
+    <insert id="create" parameterType="com.hugo.stock.entity.Stock">
+        INSERT INTO stock(name, gid)
+        VALUES(#{name}, #{gid})
+    </insert>
+
+    <!-- 更新数据 -->
+    <update id="update" parameterType="com.hugo.stock.entity.Stock">
+        UPDATE stock
+        <set>
+            <if test="increPer != null">
+                incre_per = #{increPer},
+            </if>
+            <if test="increase != null">
+                increase = #{increase},
+            </if>
+            <if test="todayStartPri != null">
+                today_start_pri = #{todayStartPri},
+            </if>
+            <if test="yesterdayEndPri != null">
+                yesterday_end_pri = #{yesterdayEndPri},
+            </if>
+            <if test="nowPri != null">
+                now_pri = #{nowPri},
+            </if>
+            <if test="todayMax != null">
+                today_max = #{todayMax},
+            </if>
+            <if test="todayMin != null">
+                today_min = #{todayMin},
+            </if>
+            <if test="picMinUrl != null">
+                pic_min_url = #{picMinUrl},
+            </if>
+            <if test="picDayUrl != null">
+                pic_day_url = #{picDayUrl},
+            </if>
+            <if test="picWeekUrl != null">
+                pic_week_url = #{picWeekUrl},
+            </if>
+            <if test="picMonthUrl != null">
+                pic_month_url = #{picMonthUrl},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+    <!-- 删除 -->
+    <delete id="delete" parameterType="Long">
+        DELETE FROM stock WHERE id = #{id}
+    </delete>
+</mapper>
