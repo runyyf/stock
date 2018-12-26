@@ -24,6 +24,6 @@ public class StockController {
      */
     @RequestMapping("/findById")
     public List<Stock> findById(@RequestParam(value = "id", required = false) Long id) {
-        return stockService.findAll();
+        return stockService.findById(id);
     }
 }

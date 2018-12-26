@@ -4,6 +4,7 @@ package com.hugo.stock.entity;/**
  * @Date: Created in 16:40 2018-12-25
  */
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
  *@Date 2018-12-25 16:40
  *@Version 1.0
  **/
-public class Stock {
+public class Stock implements Serializable{
 
     private Long id;
     //名称
@@ -42,7 +43,6 @@ public class Stock {
     private String picWeekUrl;
     //'月k线图'
     private String picMonthUrl;
-
 
     private Date  dateCreated;
     private Date  dateLastUpdate;

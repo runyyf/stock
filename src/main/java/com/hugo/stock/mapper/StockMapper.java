@@ -7,39 +7,13 @@ import java.util.List;
 
 @Mapper
 public interface StockMapper {
-    /**
-     * 查询所有
-     *
-     * @return
-     */
     List<Stock> findAll();
 
-    /**
-     * 根据ID查询
-     *
-     * @param id
-     * @return
-     */
     List<Stock> findById(Long id);
 
-    /**
-     * 添加
-     *
-     * @param t
-     */
-    void create(Stock t);
+    void create(Stock stock);
 
-    /**
-     * 删除（批量）
-     *
-     * @param ids
-     */
-    void delete(Long... ids);
+    void delete(Long id);
 
-    /**
-     * 修改
-     *
-     * @param t
-     */
-    void update(Stock t);
+    void update(Stock stock);
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hugo.stock.entity.Stock">
+<mapper namespace="com.hugo.stock.mapper.StockMapper">
 
     <resultMap id="baseMap" type="com.hugo.stock.entity.Stock">
         <id property="id" column="id" jdbcType="INTEGER"/>
@@ -24,7 +24,7 @@
     </resultMap>
 
     <!-- 查询所有 -->
-    <select id="findAll" resultType="com.hugo.stock.entity.Stock">
+    <select id="findAll" resultMap="baseMap">
         SELECT * FROM stock
     </select>
 
@@ -80,6 +80,9 @@
             </if>
             <if test="picMonthUrl != null">
                 pic_month_url = #{picMonthUrl},
+            </if>
+            <if test="dateLastUpdate != null">
+                date_last_update = #{dateLastUpdate},
             </if>
         </set>
         WHERE id = #{id}
